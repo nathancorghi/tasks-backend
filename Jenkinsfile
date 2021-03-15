@@ -51,5 +51,13 @@ pipeline {
                 }
             }
         }
+        stage ('Functional Test') {
+            steps {
+                dir('func-test') {
+                    git credentialsId: 'GitLogin', url: 'https://github.com/nathancorghi/tasks-func-tests.git'
+                    bat 'mvn test'
+                }
+            }
+        }
     }
 }
